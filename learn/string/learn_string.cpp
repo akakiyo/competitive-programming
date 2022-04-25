@@ -39,4 +39,9 @@ int learn_string()
     reverse(extractedStr.begin(), extractedStr.end());
     // 文字列内の文字を置き換える
     str.replace(3, 6, extractedStr);
+
+    // int型を文字列に変換
+    int num = 100;
+    string num_string = to_string(num);
+    cout << num_string << endl;
 }

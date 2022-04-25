@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
+int main()
+{
     vector<int> a(10);
-    for(int i=0;i<10;i++){
+    for (int i = 0; i < 10; i++)
+    {
         cin >> a[i];
     }
     int index = 0;
@@ -13,7 +15,8 @@ int main(){
     //         break;
     //     }
     // }
-    for(int i=0;i<2;i++){
+    for (int i = 0; i < 2; i++)
+    {
         // cout << "index:" << index <<" " << "a:" << a[index] <<  endl;
         index = a[index];
     }

@@ -17,4 +17,6 @@ void learn_number()
 
     // 平均の計算
     // double ave = accumulate(num_vecotr.begin(), num_vector.end(), 0.0) / num_vector.size();
+
+    //
 }
