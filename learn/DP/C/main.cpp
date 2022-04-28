@@ -14,9 +14,6 @@ int main()
 {
     int N;
     cin >> N;
-    vector<int> a(N);
-    vector<int> b(N);
-    vector<int> c(N);
     vector<vector<long long>> dp(3, vector<long long>(N + 1, -INF));
     vector<vector<int>> happiness(3, vector<int>(N));
     for (int i = 0; i < N; i++)
