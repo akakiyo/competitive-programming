@@ -16,23 +16,21 @@ int main()
     cin >> N;
     vector<int> a(N);
     vector<long long> dp(N, INF);
-    //初期条件
     dp[0] = 0;
-
     for (int i = 0; i < N; i++)
     {
         cin >> a[i];
     }
 
-    for (int i = 1; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = i - 2; j < i; j++)
+        for (int j = 1; j <= 2; j++)
         {
-            if (j < 0)
+            if (i - j < 0)
             {
                 continue;
             }
-            chmin(dp[i], abs(a[i] - a[j]) + dp[j]);
+            chmin(dp[i], abs(a[i] - a[i - j]) + dp[i - j]);
         }
     }
     cout << dp[N - 1] << endl;
