@@ -1,35 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
+template <class T>
+bool chmin(T &a, const T &b) { return a > b ? a = b, true : false; }
+template <class T>
+bool chmax(T &a, const T &b) { return a < b ? a = b, true : false; }
+template <class T>
+using V = std::vector<T>;
+typedef long long ll;
+const int inf = INT_MAX / 2;
+const ll infl = 1LL << 60;
 
-const long long INF = 1LL << 60;
-
-void chmax(long long &a, int b)
-{
-    if (a < b)
-    {
-        a = b;
-    }
-}
 int main()
 {
     int N;
     cin >> N;
-    vector<vector<long long>> dp(3, vector<long long>(N + 1, -INF));
-    vector<vector<int>> happiness(3, vector<int>(N));
+    V<V<int>> happines(3, V<int>(N));
+    V<int> b(N);
+    V<int> c(N);
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < 3; j++)
-        {
-            cin >> happiness[j][i];
-        }
+        cin >> happines[0][i] >> happines[1][i] >> happines[2][i];
     }
-    //初期条件
-    for (int i = 0; i < 3; i++)
-    {
-        dp[i][0] = 0;
-    }
-
-    for (int i = 1; i < N + 1; i++)
+    V<V<ll>> dp(3, V<ll>(N + 1, 0));
+    for (int i = 0; i <= N; i++)
     {
         for (int j = 0; j < 3; j++)
         {
@@ -37,15 +30,15 @@ int main()
             {
                 if (j == k)
                     continue;
-
-                chmax(dp[j][i], dp[k][i - 1] + happiness[k][i - 1]);
+                chmax(dp[j][i + 1], (dp[k][i] + happines[k][i]));
             }
         }
     }
-    long long result = 0;
+    ll result = 0;
     for (int i = 0; i < 3; i++)
     {
         chmax(result, dp[i][N]);
     }
     cout << result << endl;
+    return 0;
 }

@@ -53,7 +53,6 @@ void learn_vecotr2()
         price_and_maxNum[i].first = a;
         price_and_maxNum[i].second = b;
     }
-
     // 昇順
     sort(price_and_maxNum.begin(), price_and_maxNum.end());
     //降順

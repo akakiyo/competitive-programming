@@ -105,6 +105,7 @@
     "hash_map": "cpp",
     "ranges": "cpp",
     "stop_token": "cpp",
-    "syncstream": "cpp"
+    "syncstream": "cpp",
+    "*.snippet": "cpp"
   }
 }

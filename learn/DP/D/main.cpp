@@ -1,37 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-void chmax(long long &a, long long b)
-{
-    if (a < b)
-    {
-        a = b;
-    }
-}
+template <class T>
+bool chmin(T &a, const T &b) { return a > b ? a = b, true : false; }
+template <class T>
+bool chmax(T &a, const T &b) { return a < b ? a = b, true : false; }
+template <class T>
+using V = std::vector<T>;
+typedef long long ll;
+const int inf = INT_MAX / 2;
+const ll infl = 1LL << 60;
 
 int main()
 {
     int N, W;
     cin >> N >> W;
-    vector<int> weight(N);
-    vector<long long> value(N);
-    vector<vector<long long>> dp(N + 1, vector<long long>(W + 1, 0));
+    V<int> w(N);
+    V<int> v(N);
     for (int i = 0; i < N; i++)
     {
-        cin >> weight[i] >> value[i];
+        cin >> w[i] >> v[i];
     }
+    V<V<ll>> dp(N + 1, V<ll>(W + 1, 0));
     for (int i = 0; i < N; i++)
     {
-        for (int sum_w = 0; sum_w <= W; sum_w++)
+        for (int j = 0; j <= W; j++)
         {
-            if (sum_w - weight[i] >= 0)
+            if (j - w[i] >= 0)
             {
-                chmax(dp[i + 1][sum_w], dp[i][sum_w - weight[i]] + value[i]);
+                chmax(dp[i + 1][j], dp[i][j - w[i]] + v[i]);
             }
-            chmax(dp[i + 1][sum_w], dp[i][sum_w]);
+            chmax(dp[i + 1][j], dp[i][j]);
         }
     }
     cout << dp[N][W] << endl;
-
     return 0;
 }
