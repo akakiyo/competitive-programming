@@ -12,5 +12,20 @@ const ll infl = 1LL << 60;
 
 int main()
 {
+    int N;
+    cin >> N;
+    vector<int> a(N);
+    unordered_map<int, int> num;
+
+    for (int i = 0; i < N; i++)
+    {
+        cin >> a[i];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        num[a[i]] = 0;
+    }
+    cout << num.size() << endl;
+
     return 0;
 }
