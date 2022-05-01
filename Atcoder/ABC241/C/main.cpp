@@ -1,41 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
+template <class T>
+bool chmin(T &a, const T &b) { return a > b ? a = b, true : false; }
+template <class T>
+bool chmax(T &a, const T &b) { return a < b ? a = b, true : false; }
+template <class T>
+using V = std::vector<T>;
+typedef long long ll;
+const int inf = INT_MAX / 2;
+const ll infl = 1LL << 60;
 
+vector<pair<int, int>> dy_and_dx{make_pair(0, 1), make_pair(1, 1), make_pair(1, 0), make_pair(1, -1)};
 int main()
 {
     int N;
     cin >> N;
-    vector<string> S(N);
+    V<string> S(N);
     for (int i = 0; i < N; i++)
     {
         cin >> S[i];
     }
-    vector<pair<int, int>> dy_and_dx{make_pair(0, 1), make_pair(1, 1), make_pair(1, 0), make_pair(1, -1)};
-
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
         {
             for (int k = 0; k < 4; k++)
             {
-                int dy = dy_and_dx[k].first;
-                int dx = dy_and_dx[k].second;
-                int white_cnt = 0;
+                int dy = i;
+                int dx = j;
+                int white_count = 2;
                 for (int l = 0; l < 6; l++)
                 {
-                    int ny = i + dy * l;
-                    int nx = j + dx * l;
-                    if (ny < 0 || N <= ny || nx < 0 || N <= nx)
+                    if (dy < 0 || N <= dy || dx < 0 || N <= dx)
                     {
-                        white_cnt = 10000;
+                        white_count = -1;
                         break;
                     }
-                    if (S[ny][nx] == '.')
+
+                    if (S[dy][dx] == '.')
                     {
-                        white_cnt++;
+                        white_count--;
                     }
+                    dy += dy_and_dx[k].first;
+                    dx += dy_and_dx[k].second;
                 }
-                if (white_cnt <= 2)
+                if (white_count >= 0)
                 {
                     cout << "Yes" << endl;
                     return 0;
@@ -44,4 +53,5 @@ int main()
         }
     }
     cout << "No" << endl;
+    return 0;
 }
