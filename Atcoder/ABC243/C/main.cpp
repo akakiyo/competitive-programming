@@ -14,24 +14,20 @@ int main()
 {
     int N;
     cin >> N;
-    vector<pair<int, int>> xy(N);
+    V<pair<int, int>> X_and_Y(N);
+    string s;
     for (int i = 0; i < N; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        xy[i] = make_pair(x, y);
+        cin >> X_and_Y[i].first >> X_and_Y[i].second;
     }
-    string S;
-    cin >> S;
-
+    cin >> s;
     unordered_map<int, int> go_R;
     unordered_map<int, int> go_L;
-    bool conflict = false;
 
     for (int i = 0; i < N; i++)
     {
-        int x = xy[i].first, y = xy[i].second;
-        if (S[i] == 'R')
+        int x = X_and_Y[i].first, y = X_and_Y[i].second;
+        if (s[i] == 'R')
         {
             if (go_R.count(y) == 0)
             {
@@ -39,13 +35,13 @@ int main()
             }
             else
             {
-                if (x < go_R[y])
+                if (go_R[y] > x)
                 {
                     go_R[y] = x;
                 }
             }
         }
-        else
+        else if (s[i] == 'L')
         {
             if (go_L.count(y) == 0)
             {
@@ -53,25 +49,22 @@ int main()
             }
             else
             {
-                if (x > go_L[y])
+                if (go_L[y] < x)
                 {
                     go_L[y] = x;
                 }
             }
         }
-        if (go_R.count(y) != 0 && go_L.count(y) != 0 && go_R[y] < go_L[y])
+        else
         {
-            conflict = true;
-            break;
+            cout << "想定外" << endl;
+        }
+        if (go_L.count(y) != 0 && go_R.count(y) != 0 && (go_R[y] < go_L[y]))
+        {
+            cout << "Yes" << endl;
+            return 0;
         }
     }
-    if (conflict)
-    {
-        cout << "Yes" << endl;
-    }
-    else
-    {
-        cout << "No" << endl;
-    }
+    cout << "No" << endl;
     return 0;
 }

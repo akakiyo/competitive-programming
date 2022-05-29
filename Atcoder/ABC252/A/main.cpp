@@ -9,20 +9,12 @@ using V = std::vector<T>;
 typedef long long ll;
 const int inf = INT_MAX / 2;
 const ll infl = 1LL << 60;
-int ctoi(char c)
-{
-    if (c >= '0' && c <= '9')
-    {
-        return c - '0';
-    }
-    return 0;
-}
 
 int main()
 {
-    string a = "15";
-    int b = atoi(a.c_str());
-    cout << b << endl;
-
+    int N;
+    cin >> N;
+    char c = (char)N;
+    cout << c << endl;
     return 0;
 }
