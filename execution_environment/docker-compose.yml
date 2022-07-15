@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dev:
+    container_name: competitive-work-space
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # localとcontainer間のファイルを同期させる
+    # ${local}:${container}
+    volumes:
+      - ./workspace:/root/workspace:cashed
+      - ./library:/root/library:cached
+
+      # オプション これらのconfigファイルが必要なければコメントアウト
+      # - ../dotfiles/.zshrc:/root/.zshrc
+      # - ../dotfiles/.zinit:/root/.zinit
+      # - ../dotfiles/.zsh_history:/root/.zsh_history
+      # - ../dotfiles/.aliases:/root/.aliases
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
